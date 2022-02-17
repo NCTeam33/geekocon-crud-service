@@ -14,6 +14,7 @@
     <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
     <quarkus.platform.version>2.6.3.Final</quarkus.platform.version>
     <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
+    <lombok.version>1.18.22</lombok.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -40,6 +41,12 @@
       <artifactId>quarkus-resteasy-reactive</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-junit5</artifactId>
       <scope>test</scope>
@@ -49,11 +56,11 @@
       <artifactId>rest-assured</artifactId>
       <scope>test</scope>
     </dependency>
-      <dependency>
-          <groupId>com.fasterxml.jackson.core</groupId>
-          <artifactId>jackson-annotations</artifactId>
-          <version>2.12.6</version>
-      </dependency>
+    <!-- Jackson parser -->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-resteasy-reactive-jackson</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <plugins>

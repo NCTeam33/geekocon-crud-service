@@ -1,24 +1,15 @@
-package org.geekocon;
+package org.geekocon.services;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Response;
+import org.geekocon.dto.Zone;
+
+import javax.inject.Singleton;
 import java.util.ArrayList;
 import java.util.List;
 
-@Path("/v1/zones")
-@Produces("application/json")
-public class ReactiveGreetingResource {
+@Singleton
+public class ZoneService {
 
-   /* @GET
-    public Response getZone() {
-        List<Zone> zones = new ArrayList<>();
-        return Response.ok(zones).build();
-    }*/
-
-    @GET
-    public Response getZone() {
+    public List<Zone> getZones() {
         List<Zone> zones = new ArrayList<>();
 
         Zone zone1 = new Zone();
@@ -42,6 +33,9 @@ public class ReactiveGreetingResource {
         zones.add(zone1);
         zones.add(zone2);
         zones.add(zone3);
-        return Response.ok(zones).build();
+
+        return zones;
     }
+
+
 }
