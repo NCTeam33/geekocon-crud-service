@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import io.quarkus.jackson.ObjectMapperCustomizer;
 
 import javax.inject.Singleton;
-
+//всякая красота
 @Singleton
 public class JacksonObjectMapperCustomizer implements ObjectMapperCustomizer {
     public void customize(ObjectMapper mapper) {
