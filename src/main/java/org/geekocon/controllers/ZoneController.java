@@ -1,5 +1,7 @@
 package org.geekocon.controllers;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.geekocon.dto.Zone;
 import org.geekocon.services.ZoneService;
 
@@ -14,6 +16,8 @@ import java.util.List;
 @Produces("application/json")
 public class ZoneController {
 
+    private static final Logger logger = LogManager.getLogger(ZoneController.class);
+
     @Inject
     ZoneService zoneService;
 
@@ -23,7 +27,8 @@ public class ZoneController {
     }
 
     @POST
-    public Zone addZone (Zone newZone){
+    public Zone addZone(Zone newZone){
+        logger.debug("addZone invocation with: {}", newZone);
         zoneService.getZones().add(newZone);
         return newZone;
     }
