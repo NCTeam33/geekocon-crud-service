@@ -1,7 +1,5 @@
 package org.geekocon.services;
 import org.geekocon.dto.ZoneType;
-
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Singleton;
 import javax.transaction.Transactional;
 import javax.ws.rs.core.Response;
@@ -25,8 +23,9 @@ public class TypeService {
 
     @Transactional
     public Response deleteType(List<Long> id){
-        for(Long Id: id)
+        for(Long Id: id) {
             ZoneType.deleteById(Id);
+        }
         return Response.status(OK).build();
     }
 

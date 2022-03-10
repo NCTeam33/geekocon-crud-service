@@ -1,5 +1,6 @@
 package org.geekocon.services;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import org.geekocon.dto.Zone;
 import org.geekocon.dto.ZoneType;
 
@@ -10,6 +11,7 @@ import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
+import static io.quarkus.hibernate.orm.panache.PanacheEntityBase.find;
 import static javax.ws.rs.core.Response.Status.OK;
 
 @Singleton
@@ -33,5 +35,9 @@ public class ZoneService {
         return Response.status(OK).build();
     }
 
+    @Transactional
+    public List<Zone> findByTypeId(Long id){
+        return find("type_id",id).list();
+    }
 
 }

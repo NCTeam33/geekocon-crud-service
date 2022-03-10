@@ -28,6 +28,12 @@ public class ZoneController {
         zoneService.getZones();
     }
 
+    @GET
+    @Path("/{type}")
+    public void getZoneByType(Long id){
+        zoneService.findByTypeId(id);
+    }
+
     //@RolesAllowed({"api-manager"})
     @POST
     public void addZone(Zone newZone){
