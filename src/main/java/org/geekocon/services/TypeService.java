@@ -1,34 +1,33 @@
 package org.geekocon.services;
 import org.geekocon.dto.ZoneType;
+
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Singleton;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
+import javax.ws.rs.core.Response;
 import java.util.List;
+
+import static javax.ws.rs.core.Response.Status.OK;
 
 @Singleton
 public class TypeService {
 
-   private List<ZoneType> types = new ArrayList<>();
-
    @Transactional
     public List<ZoneType> getTypes() {
-        return types;
+        return ZoneType.listAll();
     }
 
     @Transactional
-    public void addType(ZoneType newType){
-        types.add(newType);
+    public ZoneType addType(ZoneType newType){
+        newType.persist();
+        return newType;
     }
 
     @Transactional
-    public void deleteType(String name){
-        types.remove(searchByName(name));
+    public Response deleteType(List<Long> id){
+        for(Long Id: id)
+            ZoneType.deleteById(Id);
+        return Response.status(OK).build();
     }
 
-    @Transactional
-    public ZoneType searchByName(String name){
-        for(ZoneType type : types)
-            if(type.getName().equals(name)) return type;
-        return null;
-    }
 }

@@ -24,22 +24,20 @@ public class ZoneController {
     ZoneService zoneService;
 
     @GET
-    public List<Zone> getZone() {
-        return zoneService.getZones();
+    public void getZone() {
+        zoneService.getZones();
     }
 
     //@RolesAllowed({"api-manager"})
     @POST
-    public Zone addZone(Zone newZone){
+    public void addZone(Zone newZone){
         logger.debug("addZone invocation with: {}", newZone);
         zoneService.addZone(newZone);
-        return newZone;
     }
 
     @DELETE
-    public Response delZone(String name){
-        zoneService.deleteZone(name);
-        return Response.status(OK).build();
+    public void delZone(List<Long> id){
+        zoneService.deleteZone(id);
     }
 
 }
