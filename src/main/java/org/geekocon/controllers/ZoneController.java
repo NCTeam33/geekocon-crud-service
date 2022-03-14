@@ -24,26 +24,28 @@ public class ZoneController {
     ZoneService zoneService;
 
     @GET
-    public void getZone() {
-        zoneService.getZones();
+    public List<Zone> getZone() {
+        return zoneService.getZones();
     }
 
     @GET
-    @Path("/{type}")
-    public void getZoneByType(Long id){
+    @Path("/{id}")
+    public void getZoneByType(@QueryParam("id") Long id){
         zoneService.findByTypeId(id);
     }
 
     //@RolesAllowed({"api-manager"})
     @POST
-    public void addZone(Zone newZone){
+    public Zone addZone(Zone newZone){
         logger.debug("addZone invocation with: {}", newZone);
-        zoneService.addZone(newZone);
+        return zoneService.addZone(newZone);
     }
 
     @DELETE
-    public void delZone(List<Long> id){
+    @Path("/{id}")
+    public Response delZone(@PathParam("id")Long id){
         zoneService.deleteZone(id);
+        return Response.status(OK).build();
     }
 
 }

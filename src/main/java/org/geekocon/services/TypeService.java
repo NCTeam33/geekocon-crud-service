@@ -22,10 +22,8 @@ public class TypeService {
     }
 
     @Transactional
-    public Response deleteType(List<Long> id){
-        for(Long Id: id) {
-            ZoneType.deleteById(Id);
-        }
+    public Response deleteType(Long id){
+        ZoneType.deleteById(id);
         return Response.status(OK).build();
     }
 

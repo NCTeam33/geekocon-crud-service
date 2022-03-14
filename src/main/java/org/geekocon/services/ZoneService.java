@@ -29,9 +29,8 @@ public class ZoneService {
     }
 
     @Transactional
-    public Response deleteZone(List<Long> id){
-        for(Long Id: id)
-            Zone.deleteById(Id);
+    public Response deleteZone(Long id){
+        Zone.deleteById(id);
         return Response.status(OK).build();
     }
 

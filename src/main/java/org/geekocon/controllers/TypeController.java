@@ -5,27 +5,32 @@ import org.geekocon.services.TypeService;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 import java.util.List;
+
+import static javax.ws.rs.core.Response.Status.OK;
 
 @Path("/types")
 @Produces("application/json")
 public class TypeController {
 
     @Inject
-    TypeService TypeService;
+    TypeService typeService;
 
     @GET
-    public void getAll() {
-        TypeService.getTypes();
+    public List<ZoneType> getAll() {
+        return typeService.getTypes();
     }
 
     @POST
-    public void addType(ZoneType newType){
-        TypeService.addType(newType);
+    public ZoneType addType(ZoneType newType){
+        return typeService.addType(newType);
     }
 
     @DELETE
-    public void deleteType(List<Long> id){
-        TypeService.deleteType(id);
+    @Path("/{id}")
+    public Response deleteType(@PathParam("id")Long id){
+        typeService.deleteType(id);
+        return Response.status(OK).build();
     }
 }
