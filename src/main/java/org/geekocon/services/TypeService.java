@@ -1,11 +1,13 @@
 package org.geekocon.services;
+import org.geekocon.dto.Zone;
 import org.geekocon.dto.ZoneType;
+import org.geekocon.exception.DependencyZoneTypeException;
+
 import javax.inject.Singleton;
 import javax.transaction.Transactional;
-import javax.ws.rs.core.Response;
 import java.util.List;
 
-import static javax.ws.rs.core.Response.Status.OK;
+
 
 @Singleton
 public class TypeService {
@@ -22,9 +24,15 @@ public class TypeService {
     }
 
     @Transactional
-    public Response deleteType(Long id){
+    public void deleteType(Long id){
+        List<Zone> tempList = Zone.listAll();
+        for(Zone zone: tempList) {
+            if (zone.getType().id.equals(id)) {
+                throw new DependencyZoneTypeException(zone.getName());
+            }
+        }
         ZoneType.deleteById(id);
-        return Response.status(OK).build();
+        return;
     }
 
 }

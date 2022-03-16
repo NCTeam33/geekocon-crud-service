@@ -1,5 +1,6 @@
 package org.geekocon.dto;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.smallrye.common.constraint.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -17,7 +18,7 @@ public class Zone extends PanacheEntity {
     @JoinColumn(name = "type_id")
     private ZoneType type;
 
-    private UUID contributorId;
+    private UUID contributor_id;
 
     private String name;
 
