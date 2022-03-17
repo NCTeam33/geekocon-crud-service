@@ -35,8 +35,8 @@ public class ZoneController {
 
     @GET
     @Path("/type/{id}")
-    public void getZoneByType(@QueryParam("id") Long id){
-        zoneService.findByTypeId(id);
+    public List<Zone> getZoneByType(@QueryParam("id") Long id){
+        return zoneService.findByTypeId(id);
     }
 
     //@RolesAllowed({"api-manager"})

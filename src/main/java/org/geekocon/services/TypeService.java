@@ -7,8 +7,6 @@ import javax.inject.Singleton;
 import javax.transaction.Transactional;
 import java.util.List;
 
-
-
 @Singleton
 public class TypeService {
 
@@ -25,6 +23,8 @@ public class TypeService {
 
     @Transactional
     public void deleteType(Long id){
+      /* Zone temp = Zone.find("type", id).firstResult();
+       if(temp != null) throw new DependencyZoneTypeException(temp.getName());*/
         List<Zone> tempList = Zone.listAll();
         for(Zone zone: tempList) {
             if (zone.getType().id.equals(id)) {

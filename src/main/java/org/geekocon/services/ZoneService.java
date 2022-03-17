@@ -8,7 +8,7 @@ import javax.inject.Singleton;
 import javax.transaction.Transactional;
 import javax.ws.rs.core.Response;
 import java.util.List;
-import static io.quarkus.hibernate.orm.panache.PanacheEntityBase.findById;
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import static javax.ws.rs.core.Response.Status.OK;
 
 @Singleton
@@ -21,12 +21,10 @@ public class ZoneService {
 
     @Transactional
     public void addZone(Zone newZone){
-        List<ZoneType> tempList = ZoneType.listAll();
-        for(ZoneType type: tempList) {
-            if (type.id.equals(newZone.getType().id)){
-                newZone.persist();
-                return;
-            }
+        ZoneType temp = ZoneType.find("id", newZone.getType().id).firstResult();
+        if(temp != null){
+            newZone.persist();
+            return;
         }
         throw new UnknownTypeException(newZone.getType());
     }
@@ -39,7 +37,7 @@ public class ZoneService {
 
     @Transactional
     public List<Zone> findByTypeId(Long id){
-        return findById(id);
+        return Zone.find("type", id).list();
     }
 
 }
