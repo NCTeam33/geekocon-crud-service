@@ -14,7 +14,6 @@ import static javax.ws.rs.core.Response.Status.OK;
 @Singleton
 public class ZoneService {
 
-    @Transactional
     public List<Zone> getZones() {
         return Zone.listAll();
     }

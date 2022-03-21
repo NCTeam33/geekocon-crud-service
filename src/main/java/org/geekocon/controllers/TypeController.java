@@ -13,7 +13,7 @@ import java.util.List;
 
 import static javax.ws.rs.core.Response.Status.OK;
 
-@Path("/types")
+@Path("/zones/types")
 @Produces("application/json")
 public class TypeController {
 

@@ -10,7 +10,6 @@ import java.util.List;
 @Singleton
 public class TypeService {
 
-   @Transactional
     public List<ZoneType> getTypes() {
         return ZoneType.listAll();
     }
