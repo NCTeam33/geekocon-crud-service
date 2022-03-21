@@ -1,6 +1,5 @@
 package org.geekocon.dto;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
-import io.smallrye.common.constraint.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

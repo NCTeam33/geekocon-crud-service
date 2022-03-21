@@ -1,7 +1,5 @@
 package org.geekocon.services;
-import org.geekocon.dto.Zone;
 import org.geekocon.dto.ZoneType;
-import org.geekocon.exception.DependencyZoneTypeException;
 
 import javax.inject.Singleton;
 import javax.transaction.Transactional;
@@ -22,15 +20,8 @@ public class TypeService {
 
     @Transactional
     public void deleteType(Long id){
-      /* Zone temp = Zone.find("type", id).firstResult();
-       if(temp != null) throw new DependencyZoneTypeException(temp.getName());*/
-        List<Zone> tempList = Zone.listAll();
-        for(Zone zone: tempList) {
-            if (zone.getType().id.equals(id)) {
-                throw new DependencyZoneTypeException(zone.getName());
-            }
-        }
         ZoneType.deleteById(id);
+       // throw new DependencyZoneTypeException(zone.getName());
         return;
     }
 

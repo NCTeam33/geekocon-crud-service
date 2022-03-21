@@ -19,34 +19,20 @@ import static javax.ws.rs.core.Response.Status.OK;
 @Produces("application/json")
 public class ZoneController {
 
-    private static final Logger logger = LogManager.getLogger(ZoneController.class);
+//    private static final Logger logger = LogManager.getLogger(ZoneController.class);
 
     @Inject
     ZoneService zoneService;
-    @ServerExceptionMapper
-    public RestResponse<String> mapException(UnknownTypeException x) {
-        return RestResponse.status(Response.Status.NOT_FOUND, "Unknown type: " + x.zoneType);
-    }
 
     @GET
-    public List<Zone> getZone() {
-        return zoneService.getZones();
-    }
-
-    @GET
-    public List<Zone> findZoneByTypeId(@QueryParam("type") Long id){
-        return zoneService.findByTypeId(id);
+    public List<Zone> getZone(@QueryParam("type") Long type) {
+        return zoneService.getZones(type);
     }
 
     //@RolesAllowed({"api-manager"})
     @POST
-    public RestResponse<String> addZone(Zone newZone){
-        try {
-            zoneService.addZone(newZone);
-            return RestResponse.status(OK);
-        } catch(UnknownTypeException e){
-            return mapException(e);
-        }
+    public Zone addZone(Zone newZone){
+       return zoneService.addZone(newZone);
     }
 
     @DELETE

@@ -14,18 +14,24 @@ import static javax.ws.rs.core.Response.Status.OK;
 @Singleton
 public class ZoneService {
 
-    public List<Zone> getZones() {
+    public List<Zone> getZones(Long type) {
+        return type == null ? getZones() : getZonesByType(type);
+    }
+
+    private List<Zone> getZones() {
         return Zone.listAll();
     }
 
+    public List<Zone> getZonesByType(Long type){
+        //TODO to implement
+        return Zone.find("type_id = ?1", type).list();
+    }
+
     @Transactional
-    public void addZone(Zone newZone){
-        ZoneType temp = ZoneType.find("id", newZone.getType().id).firstResult();
-        if(temp != null){
-            newZone.persist();
-            return;
-        }
-        throw new UnknownTypeException(newZone.getType());
+    public Zone addZone(Zone newZone){
+        newZone.persist();
+        return newZone;
+        //throw new UnknownTypeException(newZone.getType());
     }
 
     @Transactional
@@ -34,9 +40,6 @@ public class ZoneService {
         return Response.status(OK).build();
     }
 
-    @Transactional
-    public List<Zone> findByTypeId(Long id){
-        return Zone.find("type", id).list();
-    }
+
 
 }
