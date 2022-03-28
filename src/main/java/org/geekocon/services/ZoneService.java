@@ -8,7 +8,7 @@ import javax.inject.Singleton;
 import javax.transaction.Transactional;
 import javax.ws.rs.core.Response;
 import java.util.List;
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
+
 import static javax.ws.rs.core.Response.Status.OK;
 
 @Singleton
@@ -29,9 +29,10 @@ public class ZoneService {
 
     @Transactional
     public Zone addZone(Zone newZone){
+        ZoneType temp = ZoneType.find("id",newZone.getType().id).firstResult();
+        if(temp == null) throw new UnknownTypeException(newZone.getType());
         newZone.persist();
         return newZone;
-        //throw new UnknownTypeException(newZone.getType());
     }
 
     @Transactional

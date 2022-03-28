@@ -13,7 +13,5 @@ import javax.persistence.*;
 @Entity
 @Table
 public class ZoneType extends PanacheEntity {
-
     private String name;
-
 }
