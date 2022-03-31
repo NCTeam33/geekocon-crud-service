@@ -10,11 +10,11 @@ import javax.ws.rs.core.Response;
 public class ExceptionMapper {
     @ServerExceptionMapper
     public RestResponse<String> mapException(DependencyZoneTypeException x) {
-        return RestResponse.status(Response.Status.CONFLICT, "Was found zone with this type: " + x.zoneName);
+        return RestResponse.status(Response.Status.CONFLICT, "Was found zone with this type: " + x.message);
     }
 
     @ServerExceptionMapper
     public RestResponse<String> mapException(UnknownTypeException x) {
-        return RestResponse.status(Response.Status.NOT_FOUND, "Unknown type: " + x.zoneType);
+        return RestResponse.status(Response.Status.NOT_FOUND, "Message: " + x.message);
     }
 }

@@ -1,11 +1,9 @@
 package org.geekocon.exception;
 
-import org.geekocon.dto.ZoneType;
-
 public class UnknownTypeException extends RuntimeException{
-    public final ZoneType zoneType;
+    public final String message;
 
-    public UnknownTypeException(ZoneType zoneType) {
-        this.zoneType = zoneType;
+    public UnknownTypeException(String e) {
+        this.message = e;
     }
 }

@@ -1,9 +1,9 @@
 package org.geekocon.services;
-import org.geekocon.dto.Zone;
 import org.geekocon.dto.ZoneType;
 import org.geekocon.exception.DependencyZoneTypeException;
 
 import javax.inject.Singleton;
+import javax.persistence.PersistenceException;
 import javax.transaction.Transactional;
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -25,9 +25,13 @@ public class TypeService {
 
     @Transactional
     public Response deleteType(Long id){
-        Zone temp = Zone.find("type_id = ?1", id).firstResult();
-        if(temp != null) throw new DependencyZoneTypeException(temp.getName());
-        ZoneType.deleteById(id);
+        try{
+            ZoneType.delete("id", id);
+        }
+        catch (PersistenceException e){
+            if(e.getCause() instanceof org.hibernate.exception.ConstraintViolationException)
+                throw new DependencyZoneTypeException(e.getCause().getMessage());
+        }
         return Response.status(OK).build();
     }
 

@@ -29,7 +29,6 @@ public class ZoneController {
     @POST
     public Zone addZone(Zone newZone){
        return zoneService.addZone(newZone);
-
     }
 
     @DELETE

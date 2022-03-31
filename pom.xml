@@ -56,14 +56,6 @@
       <artifactId>rest-assured</artifactId>
       <scope>test</scope>
     </dependency>
-      <dependency>
-        <groupId>io.quarkus</groupId>
-        <artifactId>quarkus-oidc</artifactId>
-      </dependency>
-      <dependency>
-        <groupId>io.quarkus</groupId>
-        <artifactId>quarkus-keycloak-authorization</artifactId>
-      </dependency>
     <!-- Jackson parser -->
     <dependency>
       <groupId>io.quarkus</groupId>
@@ -83,6 +75,10 @@
     <dependency>
       <groupId>org.jboss.logmanager</groupId>
       <artifactId>log4j2-jboss-logmanager</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-hibernate-validator</artifactId>
     </dependency>
   </dependencies>
   <build>
