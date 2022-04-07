@@ -20,6 +20,14 @@ public class Zone extends PanacheEntity {
     @Column(name = "contributor_id")
     private UUID contributorId;
 
+    private String description;
+
+    @Column(name = "total_tickets_amount")
+    private int totalTicketsAmount;
+
+    @Column(name = "available_tickets_amount")
+    private int availableTicketsAmount;
+
     private String name;
 
 }
