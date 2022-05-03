@@ -23,11 +23,10 @@ public class Zone extends PanacheEntity {
     private String description;
 
     @Column(name = "total_tickets_amount")
-    private int totalTicketsAmount;
+    private int totalTicketAmount;
 
     @Column(name = "available_tickets_amount")
-    private int availableTicketsAmount;
+    private int availableTicketAmount;
 
     private String name;
-
 }

@@ -55,7 +55,7 @@ public class ZoneService {
         zone.setName(newZone.getName());
         zone.setType(newZone.getType());
         zone.setDescription(newZone.getDescription());
-        zone.setTotalTicketsAmount(newZone.getTotalTicketsAmount());
+        zone.setTotalTicketAmount(newZone.getTotalTicketAmount());
         return zone;
     }
 
