@@ -37,7 +37,7 @@ public class TypeController {
     // @RolesAllowed({"api-contributor"})
     @PUT
     @Path("/{id}")
-    public ZoneType updateType(Long id, String name){
+    public ZoneType updateType(Long id, ZoneType name){
         return typeService.updateType(id, name);
     }
 }

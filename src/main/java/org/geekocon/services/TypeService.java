@@ -37,9 +37,9 @@ public class TypeService {
 
 
     @Transactional
-    public ZoneType updateType(Long id, String name){
+    public ZoneType updateType(Long id, ZoneType name){
         ZoneType zoneType = ZoneType.findById(id);
-        zoneType.setName(name);
+        zoneType.setName(name.getName());
         return zoneType;
     }
 
