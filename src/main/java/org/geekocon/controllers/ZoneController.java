@@ -37,4 +37,11 @@ public class ZoneController {
         return zoneService.deleteZone(id);
     }
 
+    // @RolesAllowed({"api-contributor"})
+    @PUT
+    @Path("/{id}")
+    public Zone updateZone(Long id, Zone newZone){
+        return zoneService.updateZone(id, newZone);
+    }
+
 }

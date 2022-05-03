@@ -49,6 +49,15 @@ public class ZoneService {
         return Response.status(OK).build();
     }
 
+    @Transactional
+    public Zone updateZone(long id, Zone newZone){
+        Zone zone = Zone.findById(id);
+        zone.setName(newZone.getName());
+        zone.setType(newZone.getType());
+        zone.setDescription(newZone.getDescription());
+        zone.setTotalTicketsAmount(newZone.getTotalTicketsAmount());
+        return zone;
+    }
 
 
 }

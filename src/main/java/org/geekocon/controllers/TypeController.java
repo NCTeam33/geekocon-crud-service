@@ -33,4 +33,11 @@ public class TypeController {
     public Response deleteType(Long id){
         return typeService.deleteType(id);
     }
+
+    // @RolesAllowed({"api-contributor"})
+    @PUT
+    @Path("/{id}")
+    public ZoneType updateType(Long id, String name){
+        return typeService.updateType(id, name);
+    }
 }

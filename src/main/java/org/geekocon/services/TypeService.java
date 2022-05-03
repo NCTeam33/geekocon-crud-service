@@ -35,4 +35,12 @@ public class TypeService {
         return Response.status(OK).build();
     }
 
+
+    @Transactional
+    public ZoneType updateType(Long id, String name){
+        ZoneType zoneType = ZoneType.findById(id);
+        zoneType.setName(name);
+        return zoneType;
+    }
+
 }
