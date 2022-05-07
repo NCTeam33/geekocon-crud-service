@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.geekocon.dto.Zone;
 import org.geekocon.services.ZoneService;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
@@ -25,21 +26,22 @@ public class ZoneController {
         return zoneService.getZones(type);
     }
 
-    //@RolesAllowed({"api-manager"})
     @POST
+    @RolesAllowed({"api-contributor"})
     public Zone addZone(Zone newZone){
        return zoneService.addZone(newZone);
     }
 
     @DELETE
     @Path("/{id}")
+    //@RolesAllowed({"api-contributor"})
     public Response delZone(Long id){
         return zoneService.deleteZone(id);
     }
 
-    // @RolesAllowed({"api-contributor"})
     @PUT
     @Path("/{id}")
+    //@RolesAllowed({"api-contributor"})
     public Zone updateZone(Long id, Zone newZone){
         return zoneService.updateZone(id, newZone);
     }

@@ -24,19 +24,21 @@ public class TypeController {
     }
 
     @POST
+    //@RolesAllowed({"api-contributor"})
     public ZoneType addType(ZoneType newType){
         return typeService.addType(newType);
     }
 
     @DELETE
     @Path("/{id}")
+    //@RolesAllowed({"api-contributor"})
     public Response deleteType(Long id){
         return typeService.deleteType(id);
     }
 
-    // @RolesAllowed({"api-contributor"})
     @PUT
     @Path("/{id}")
+    //@RolesAllowed({"api-contributor"})
     public ZoneType updateType(Long id, ZoneType name){
         return typeService.updateType(id, name);
     }

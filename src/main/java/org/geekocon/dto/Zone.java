@@ -18,7 +18,7 @@ public class Zone extends PanacheEntity {
     private ZoneType type;
 
     @Column(name = "contributor_id")
-    private UUID contributorId;
+    private String contributorId;
 
     private String description;
 

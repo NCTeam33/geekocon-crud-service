@@ -1,11 +1,15 @@
 package org.geekocon.services;
 
+import io.quarkus.security.identity.SecurityIdentity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.geekocon.controllers.ZoneController;
 import org.geekocon.dto.Zone;
 import org.geekocon.exception.UnknownTypeException;
 
+
+import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.persistence.*;
 import javax.transaction.Transactional;
@@ -17,6 +21,8 @@ import static javax.ws.rs.core.Response.Status.OK;
 
 @Singleton
 public class ZoneService {
+    @Inject
+    JsonWebToken token;
     private static final Logger logger = LogManager.getLogger(ZoneController.class);
     public List<Zone> getZones(Long type) {
         return type == null ? getZones() : getZonesByType(type);
@@ -33,6 +39,9 @@ public class ZoneService {
     @Transactional
     public Zone addZone(Zone newZone){
         try {
+            String userId = token.getSubject();
+            System.out.println(userId);
+            newZone.setContributorId(userId);
             newZone.persistAndFlush();
         } catch (PersistenceException e){
             if(e.getCause() instanceof org.hibernate.exception.ConstraintViolationException) {
