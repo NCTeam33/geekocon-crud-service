@@ -34,14 +34,14 @@ public class ZoneController {
 
     @DELETE
     @Path("/{id}")
-    //@RolesAllowed({"api-contributor"})
+    @RolesAllowed({"api-contributor"})
     public Response delZone(Long id){
         return zoneService.deleteZone(id);
     }
 
     @PUT
     @Path("/{id}")
-    //@RolesAllowed({"api-contributor"})
+    @RolesAllowed({"api-contributor"})
     public Zone updateZone(Long id, Zone newZone){
         return zoneService.updateZone(id, newZone);
     }
