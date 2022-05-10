@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.geekocon.controllers.ZoneController;
 import org.geekocon.dto.Zone;
-import org.geekocon.exception.UnknownTypeException;
+import org.geekocon.exception.GeekoconException;
 
 
 import javax.inject.Inject;
@@ -45,9 +45,9 @@ public class ZoneService {
             newZone.persistAndFlush();
         } catch (PersistenceException e){
             if(e.getCause() instanceof org.hibernate.exception.ConstraintViolationException) {
-                logger.info("ERRRRRR{}", e.getCause().getCause());
-                throw new UnknownTypeException(e.getCause().getMessage());
+                throw new GeekoconException(e.getCause().getCause().getMessage());
             }
+            throw e;
         }
         return newZone;
     }

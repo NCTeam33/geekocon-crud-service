@@ -1,6 +1,6 @@
 package org.geekocon.services;
 import org.geekocon.dto.ZoneType;
-import org.geekocon.exception.DependencyZoneTypeException;
+import org.geekocon.exception.GeekoconException;
 
 import javax.inject.Singleton;
 import javax.persistence.PersistenceException;
@@ -29,8 +29,10 @@ public class TypeService {
             ZoneType.delete("id", id);
         }
         catch (PersistenceException e){
-            if(e.getCause() instanceof org.hibernate.exception.ConstraintViolationException)
-                throw new DependencyZoneTypeException(e.getCause().getMessage());
+            if(e.getCause() instanceof org.hibernate.exception.ConstraintViolationException) {
+                throw new GeekoconException(e.getCause().getCause().getMessage());
+            }
+            throw e;
         }
         return Response.status(OK).build();
     }
