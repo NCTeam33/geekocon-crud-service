@@ -1,5 +1,6 @@
 package org.geekocon.controllers;
 
+import org.geekocon.dto.GeekoconMessage;
 import org.geekocon.dto.ZoneType;
 import org.geekocon.services.TypeService;
 
@@ -7,7 +8,6 @@ import org.geekocon.services.TypeService;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
 import java.util.List;
 
 
@@ -31,8 +31,8 @@ public class TypeController {
 
     @DELETE
     @Path("/{id}")
-    @RolesAllowed({"api-contributor"})
-    public Response deleteType(Long id){
+    //@RolesAllowed({"api-contributor"})
+    public GeekoconMessage deleteType(Long id){
         return typeService.deleteType(id);
     }
 

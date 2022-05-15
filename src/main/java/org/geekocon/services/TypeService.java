@@ -1,13 +1,17 @@
 package org.geekocon.services;
+import org.geekocon.dto.GeekoconMessage;
 import org.geekocon.dto.ZoneType;
 import org.geekocon.exception.GeekoconException;
+import org.jboss.resteasy.reactive.RestResponse;
 
 import javax.inject.Singleton;
 import javax.persistence.PersistenceException;
 import javax.transaction.Transactional;
+import javax.validation.constraints.Negative;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+import static javax.ws.rs.core.Response.Status.NOT_ACCEPTABLE;
 import static javax.ws.rs.core.Response.Status.OK;
 
 @Singleton
@@ -24,7 +28,7 @@ public class TypeService {
     }
 
     @Transactional
-    public Response deleteType(Long id){
+    public GeekoconMessage deleteType(Long id){
         try{
             ZoneType.delete("id", id);
         }
@@ -34,7 +38,7 @@ public class TypeService {
             }
             throw e;
         }
-        return Response.status(OK).build();
+        return new GeekoconMessage(OK, "Good");
     }
 
 
