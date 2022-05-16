@@ -28,7 +28,7 @@ public class TypeService {
     }
 
     @Transactional
-    public GeekoconMessage deleteType(Long id){
+    public Response deleteType(Long id){
         try{
             ZoneType.delete("id", id);
         }
@@ -38,7 +38,7 @@ public class TypeService {
             }
             throw e;
         }
-        return new GeekoconMessage(OK, "Good");
+        return Response.status(OK).build();
     }
 
 
